@@ -41,15 +41,16 @@ public class NutritionPlanService {
     private String buildPrompt(UserProfile userProfile) {
         return """
                 Gere um plano alimentar em JSON estruturado com as seguintes características:
-
+    
                 Requisitos do usuário:
                 - Objetivo: %s
                 - Restrições: %s
                 - Características: %d anos, %.2f m, %.2f kg
-
+                - Pedido específico do usuário: %s
+    
                 Estrutura exigida:
                 {
-                  "message": "Descreva o que a pessoa tem que saber sobre a dieta dela, em portuges",
+                  "message": "Descreva o que a pessoa tem que saber sobre a dieta dela, em português",
                   "dietPlan": {
                     "meals": [
                       {
@@ -70,14 +71,16 @@ public class NutritionPlanService {
                     ]
                   }
                 }
-
+    
                 NÃO INCLUA NENHUM TEXTO FORA DO JSON. NÃO USE MARKDOWN. APENAS O JSON.
                 """.formatted(
                 userProfile.getGoal(),
-                String.join(", ", userProfile.getRestrictions()),
+                userProfile.getRestrictions(),
                 userProfile.getAge(),
                 userProfile.getHeight(),
-                userProfile.getWeight());
+                userProfile.getWeight(),
+                userProfile.getPrompdousuario()
+        );
     }
 
     private String getAiResponse(String prompt) {
