@@ -1,10 +1,9 @@
 package com.nutrisync.nutrisync.dto;
 
-
 import lombok.Data;
 
 @Data
-public class UserProfile {
+public class UserRequest {
     private int age;
     private double height;
     private double weight;

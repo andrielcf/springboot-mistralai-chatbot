@@ -7,20 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nutrisync.nutrisync.dto.DietPlanResponse;
-import com.nutrisync.nutrisync.dto.UserProfile;
-import com.nutrisync.nutrisync.service.NutritionPlanService;
-
-import lombok.RequiredArgsConstructor;
+import com.nutrisync.nutrisync.dto.UserRequest;
+import com.nutrisync.nutrisync.service.NutritionService;
 
 @RestController
 @RequestMapping("/api/nutrition")
-@RequiredArgsConstructor
 public class NutritionController {
-    private final NutritionPlanService nutritionPlanService;
+    private final NutritionService nutritionService;
+
+    public NutritionController(NutritionService nutritionService) {
+        this.nutritionService = nutritionService;
+    }
 
     @PostMapping("/generate-plan")
-    public ResponseEntity<DietPlanResponse> generatePlan(@RequestBody UserProfile userProfile) {
-        DietPlanResponse response = nutritionPlanService.generateDietPlan(userProfile);
+    public ResponseEntity<DietPlanResponse> generatePlan(@RequestBody UserRequest request) {
+        DietPlanResponse response = nutritionService.generateDietPlan(request);
         return ResponseEntity.ok(response);
     }
 }
