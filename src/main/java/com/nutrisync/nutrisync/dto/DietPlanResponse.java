@@ -2,20 +2,28 @@ package com.nutrisync.nutrisync.dto;
 
 import java.util.List;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class DietPlanResponse {
     private String message;
     private List<DayPlan> weeklyPlan;
 
-    @Data
+    @Getter
+    @Setter
+    @NoArgsConstructor
     public static class DayPlan {
         private int day;
         private List<Meal> planDay;
     }
 
-    @Data
+    @Getter
+    @Setter
+    @NoArgsConstructor
     public static class Meal {
         private String meal;
         private String time;

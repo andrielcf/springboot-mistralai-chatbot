@@ -1,13 +1,24 @@
 package com.nutrisync.nutrisync.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class UserRequest {
-    private int age;
-    private double height;
-    private double weight;
+
     private String goal;
+    
     private String restrictions;
-    private String prompdousuario;
+    
+    private int age;
+    
+    private double height;
+    
+    private double weight;
+    
+    private String promptUsuario;
 }
+
